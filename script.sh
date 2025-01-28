@@ -1,46 +1,46 @@
 #!/bin/bash
 
 # Update system
-sudo apt update && sudo apt upgrade -y
+apt update && apt upgrade -y
 
 # Install Sway (Compositor)
 echo "Installing Sway..."
-sudo apt install -y sway
+apt install -y sway
 
 # Install Waybar (Panel)
 echo "Installing Waybar..."
-sudo apt install -y waybar
+apt install -y waybar
 
 # Install SDDM (Login Manager)
 echo "Installing SDDM..."
-sudo apt install -y sddm
-sudo systemctl enable sddm
+apt install -y sddm
+systemctl enable sddm
 
 # Install Fuzzel (Application Launcher)
 echo "Installing Fuzzel..."
-sudo apt install -y fuzzel
+apt install -y fuzzel
 
 # Install Nemo (File Manager)
 echo "Installing Nemo..."
-sudo apt install -y nemo
+apt install -y nemo
 
 # Install Foot (Terminal Emulator)
 echo "Installing Foot..."
-sudo apt install -y foot
+apt install -y foot
 
 # Install PipeWire (Audio System)
 echo "Installing PipeWire..."
-sudo apt install -y pipewire pipewire-pulse wireplumber
+apt install -y pipewire pipewire-pulse wireplumber
 systemctl --user enable pipewire pipewire-pulse wireplumber
 systemctl --user start pipewire pipewire-pulse wireplumber
 
 # Install Mako (Notification Daemon)
 echo "Installing Mako..."
-sudo apt install -y mako-notifier
+apt install -y mako-notifier
 
 # Install Swaybg (Wallpaper Setter)
 echo "Installing Swaybg..."
-sudo apt install -y swaybg
+apt install -y swaybg
 
 # Create Configuration Directories
 echo "Setting up configuration files..."
@@ -50,7 +50,7 @@ mkdir -p ~/.config/{sway,waybar,mako,foot}
 echo "Configuring Sway..."
 cat > ~/.config/sway/config <<EOF
 # Sway Configuration File
-set $mod Mod4
+set \$mod Mod4
 
 # Terminal
 bindsym \$mod+Return exec foot
@@ -118,8 +118,8 @@ EOF
 
 # Set Default Session in SDDM
 echo "Configuring SDDM for Sway..."
-sudo mkdir -p /etc/sddm.conf.d
-sudo bash -c 'cat > /etc/sddm.conf.d/wayland.conf' <<EOF
+mkdir -p /etc/sddm.conf.d
+bash -c 'cat > /etc/sddm.conf.d/wayland.conf' <<EOF
 [Wayland]
 Session=sway
 EOF
